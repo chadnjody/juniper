@@ -1,0 +1,51 @@
+set version 13.2X51-D30.4
+set system host-name DDC-SWITCH
+set system domain-name dicecorp.net
+set system time-zone America/Detroit
+set system arp aging-timer 5
+set system root-authentication encrypted-password "$1$8gD8RyDW$t9U4W4UyFaS8rzziBMJDp0"
+set system root-authentication ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAiCYMsdb3IPCxTWAqzPZzBCNo6vj/jpEWbGfAdkS51y1sVDgdl/p+vQzA0e/wOU5TJkvcTI6+zsj5fQqMKbETeHGrwdMzzPLnRmkTdEZQIIXNovgv5SD5Cgqh6pTlPSWFwJUzmQR3Bp+f/Qbr5l5f/4mwLiLKjfJ/A2Zhe5ihMYOfb/Mp7WVCaVb6c8XabTvSNtgVuC7DvznEmVAfoXyuE1G/KVvh2VuaD236e4yDgbqNRk8U0/0biW8crI9d0t/UEcJDEAVnJjc+Lub3sFQJ2x8f14ppQEjn6fwVFxPCrtW3Zg5+PTCTwwkUp6cExCFmukR0Svm27o5tsSItLcQPgw== rsa-key-20150817"
+set system name-server 8.8.8.8
+set system name-server 4.2.2.2
+set system login user admin uid 2000
+set system login user admin class super-user
+set system login user admin authentication ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAiCYMsdb3IPCxTWAqzPZzBCNo6vj/jpEWbGfAdkS51y1sVDgdl/p+vQzA0e/wOU5TJkvcTI6+zsj5fQqMKbETeHGrwdMzzPLnRmkTdEZQIIXNovgv5SD5Cgqh6pTlPSWFwJUzmQR3Bp+f/Qbr5l5f/4mwLiLKjfJ/A2Zhe5ihMYOfb/Mp7WVCaVb6c8XabTvSNtgVuC7DvznEmVAfoXyuE1G/KVvh2VuaD236e4yDgbqNRk8U0/0biW8crI9d0t/UEcJDEAVnJjc+Lub3sFQJ2x8f14ppQEjn6fwVFxPCrtW3Zg5+PTCTwwkUp6cExCFmukR0Svm27o5tsSItLcQPgw== rsa-key-20150817"
+set system login user oxidized uid 2001
+set system login user oxidized class super-user
+set system login user oxidized authentication encrypted-password "$1$KTY2GXyD$/HD.umc0QdR6wjwuvpUeD."
+set system services ssh root-login deny
+deactivate system services ssh root-login
+set system services ssh max-sessions-per-connection 32
+set system services netconf ssh
+set system services dhcp-local-server overrides bootp-support
+set system syslog user * any emergency
+set system syslog host 10.244.20.13 any any
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file messages archive size 1m
+set system syslog file messages archive files 15
+set system syslog file interactive-commands interactive-commands any
+set system syslog file default-log-messages any any
+set system syslog file default-log-messages match "(requested 'commit' operation)|(copying configuration to juniper.save)|(commit complete)|ifAdminStatus|(FRU power)|(FRU removal)|(FRU insertion)|(link UP)|transitioned|Transferred|transfer-file|(license add)|(license delete)|(package -X update)|(package -X delete)|QF_NODE|QF_SERVER_NODE_GROUP|QF_INTERCONNECT|QF_DIRECTOR|QF_NETWORK_NODE_GROUP|(Master Unchanged, Members Changed)|(Master Changed, Members Changed)|(Master Detected, Members Changed)|(vc add)|(vc delete)|(Master detected)|(Master changed)|(Backup detected)|(Backup changed)|(interface vcp-)|(AIS_DATA_AVAILABLE)"
+set system syslog file default-log-messages structured-data
+set system commit synchronize
+set system processes app-engine-virtual-machine-management-service traceoptions level notice
+set system processes app-engine-virtual-machine-management-service traceoptions flag all
+set system ntp server 204.235.51.9
+set system ntp server 108.61.56.35
+set chassis redundancy graceful-switchover
+set chassis aggregated-devices ethernet device-count 100
+set chassis alarm management-ethernet link-down ignore
+set interfaces xe-0/0/0 description "spine 0 connection to hardware 5524"
+set interfaces xe-0/0/0 ether-options 802.3ad ae1
+set interfaces xe-0/0/1 ether-options 802.3ad ae27
+set interfaces xe-0/0/2 description "to DEV SWITCH 1"
+set interfaces xe-0/0/2 ether-options 802.3ad ae28
+set interfaces xe-0/0/3 description "to DEV SWITCH 2"
+set interfaces xe-0/0/3 ether-options 802.3ad ae29
+set interfaces xe-0/0/4 description ASP-ESXI-1
+set interfaces xe-0/0/4 ether-options 802.3ad ae2
+set interfaces xe-0/0/5 description ASP-ESXI-2
+set interfaces xe-0/0/5 ether-options 802.3ad ae3
+set interfaces xe-0/0/6 description ASP-ESXI-3
+set interfaces xe-0/0/6 ether-options 802.3ad ae4
